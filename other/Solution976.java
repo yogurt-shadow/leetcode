@@ -1,3 +1,4 @@
+package other;
 import java.util.Arrays;
 
 public class Solution976 {

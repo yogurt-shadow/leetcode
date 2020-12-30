@@ -1,3 +1,5 @@
+
+package other;
 public class Solution5 {
     public static String longestPalindrome(String s) {
         if(s.length() <= 1){

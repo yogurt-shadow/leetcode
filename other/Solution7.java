@@ -1,3 +1,5 @@
+package other;
+
 public class Solution7{
 	 public int reverse(int x) {
 	 	if(x == 0){

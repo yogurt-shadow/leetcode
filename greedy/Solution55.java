@@ -1,19 +1,15 @@
 class Solution55 {
     public boolean canJump(int[] nums) {
-    	if(nums.length == 1){
-    		return true;
-    	}
-    	loop1: for(int i = nums.length - 2; i >= 0; i--){
-    		if(nums[i] == 0){
-    			for(int j = i - 1; j >= 0; j--){
-    				if(j + nums[j] > i){
-    					continue loop1;
-    				}
-    			}
-    			return false;
-    		}
-    	}
-    	return true;
+    	int cover = 0;
+        int i = 0;
+        while(i <= cover){
+            cover = Math.max(cover, i + nums[i]);
+            if(cover >= nums.length - 1){
+                return true;
+            }
+            i += 1;
+        }
+        return false;
     }
 
     public static void main(String[] args){

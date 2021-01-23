@@ -1,6 +1,7 @@
 public class UnionFind{
 	private int n;
 	private int count;
+	private int number;
 	private int[] parent;
 	private int[] size;
 
@@ -9,10 +10,15 @@ public class UnionFind{
 		parent = new int[n];
 		size = new int[n];
 		count = 0;
+		number = n;
 		for(int i = 0; i < n; i++){
 			parent[i] = i;
 			size[i] = 1;
 		}
+	}
+
+	public int size(){
+		return number;
 	}
 
 	public int count(){
@@ -41,6 +47,7 @@ public class UnionFind{
 			size[parent2] += size[parent1];
 		}
 		count += 1;
+		number -= 1;
 	}
 
 	public boolean is_connected(int x, int y){

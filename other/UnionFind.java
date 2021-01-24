@@ -25,7 +25,7 @@ public class UnionFind{
 		return count;
 	}
 
-	private int findparent(int x){
+	public int findparent(int x){
 		if(parent[x] == x){
 			return x;
 		}

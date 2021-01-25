@@ -25,6 +25,10 @@ public class UnionFind{
 		return count;
 	}
 
+	public int size(int x){
+		return size[findparent(x)];
+	}
+
 	public int findparent(int x){
 		if(parent[x] == x){
 			return x;

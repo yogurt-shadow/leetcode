@@ -43,7 +43,7 @@ class Solution399 {
           
             double v = 1.0 / values[j];
             
-    		edge_value[index.get(right)][index.get(left)] = formatDouble1(v);
+    		edge_value[index.get(right)][index.get(left)] = v;
     	}
     	double[] result = new double[queries.size()];
     	for(int j = 0; j < queries.size(); j++){
@@ -64,8 +64,8 @@ class Solution399 {
     		set.clear();
     		get_value(index1);
     		set.clear();
-    		cur_value = new double[size];
-    		result[j] = cur_value[index2] / cur_value[index1];
+    		result[j] = formatDouble1(cur_value[index1] / cur_value[index2]);
+			cur_value = new double[size];
     	}
     	return result;
     }
@@ -81,7 +81,7 @@ class Solution399 {
     	}
     }
     private double formatDouble1(double d) {
-        return (double) Math.round(d * 100)/100;
+        return (double) Math.round(d * 100000)/100000;
     }
 
     private boolean is_connected(int index1, int index2){
@@ -124,5 +124,8 @@ class Solution399 {
         queries.add(list33);
 
         double[] result = s.calcEquation(equations, values, queries);
+        for(double ele: result){
+        	System.out.print(ele + " ");
+		}
     }
 }

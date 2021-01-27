@@ -1,60 +1,59 @@
-public class UnionFind{
-	private int n;
-	private int count;
-	private int number;
-	private int[] parent;
-	private int[] size;
+import java.util.Arrays;
 
-	public UnionFind(int n){
-		this.n = n;
-		parent = new int[n];
-		size = new int[n];
-		count = 0;
-		number = n;
-		for(int i = 0; i < n; i++){
-			parent[i] = i;
-			size[i] = 1;
-		}
-	}
+class UnionFind {
+    int[] parent;
+    int[] size;
+    int n;
+    // 当前连通分量数目
+    int setCount;
 
-	public int size(){
-		return number;
-	}
+    public UnionFind(int n) {
+        this.n = n;
+        this.setCount = n;
+        this.parent = new int[n];
+        this.size = new int[n];
+        Arrays.fill(size, 1);
+        for (int i = 0; i < n; ++i) {
+            parent[i] = i;
+        }
+    }
 
-	public int count(){
-		return count;
-	}
+    public int size(){
+    	return setCount;
+    }
+    
+    public int findparent(int x) {
+        if(parent[x] == x){
+        	return x;
+        }
+        parent[x] = findparent(parent[x]);
+        return parent[x];
+    }
+    
+    public boolean connect(int x, int y) {
+        x = findparent(x);
+        y = findparent(y);
+        if (x == y) {
+            return false;
+        }
+        if (size[x] < size[y]) {
+            int temp = x;
+            x = y;
+            y = temp;
+        }
+        parent[y] = x;
+        size[x] += size[y];
+        --setCount;
+        return true;
+    }
 
-	public int size(int x){
-		return size[findparent(x)];
+    public int size(int x){
+    	return size[findparent(x)];
 	}
-
-	public int findparent(int x){
-		if(parent[x] == x){
-			return x;
-		}
-		return findparent(parent[x]);
-	}
-
-	public void connect(int x, int y){
-		if(is_connected(x, y)){
-			return;
-		}
-		int parent1 = findparent(x);
-		int parent2 = findparent(y);
-		if(size[x] >= size[y]){
-			parent[parent2] = parent1;
-			size[parent1] += size[parent2];
-		}
-		else{
-			parent[parent1] = parent2;
-			size[parent2] += size[parent1];
-		}
-		count += 1;
-		number -= 1;
-	}
-
-	public boolean is_connected(int x, int y){
-		return findparent(x) == findparent(y);
-	}
+    
+    public boolean is_connected(int x, int y) {
+        y = findparent(y);
+		x = findparent(x);
+		return x == y;
+    }
 }

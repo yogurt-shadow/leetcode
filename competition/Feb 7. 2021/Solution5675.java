@@ -35,7 +35,7 @@ class Solution5675 {
         }
         return min;
     }
-    
+
     private int lower_bound(int[] f, int target){
         int l = 0; 
         int r = f.length;
@@ -49,5 +49,12 @@ class Solution5675 {
             }
         }
         return l;
+    }
+
+    public static void main(String[] args){
+        Solution5675 s = new Solution5675();
+        int[] test = {5, -7, 3, 5};
+        System.out.println(1 << 8);
+        System.out.println(s.minAbsDifference(test, 6));
     }
 }

@@ -52,4 +52,10 @@ class Solution992 {
     		return different;
     	}
     }
+
+    public static void main(String[] args){
+    	Solution992 s = new Solution992();
+    	int[] test = {1, 2, 1, 2, 3};
+    	System.out.println(s.subarraysWithKDistinct(test, 2));
+    }
 }

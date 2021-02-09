@@ -54,7 +54,6 @@ class Solution5675 {
     public static void main(String[] args){
         Solution5675 s = new Solution5675();
         int[] test = {5, -7, 3, 5};
-        System.out.println(1 << 8);
         System.out.println(s.minAbsDifference(test, 6));
     }
 }

@@ -23,6 +23,7 @@ class Solution5675 {
         }
         Arrays.sort(f2);
         int min = Integer.MAX_VALUE;
+        /**
         for(int i = 0; i < f1.length; ++i){
             int target = goal - f1[i];
             int index = lower_bound(f2, target);
@@ -34,22 +35,25 @@ class Solution5675 {
             }
         }
         return min;
-    }
-
-    private int lower_bound(int[] f, int target){
-        int l = 0; 
-        int r = f.length;
-        while(l + 1 < r){
-            int middle = l + (r - l - 1) / 2;
-            if(f[middle] < target){
-                l = middle + 1;
+         }*/
+        int index1 = 0;
+        int index2 = f2.length - 1;
+        Arrays.sort(f1);
+        while(index1 < f1.length && index2 >= 0){
+            int sum = f1[index1] + f2[index2];
+            min = Math.min(min, Math.abs(sum - goal));
+            if(min == 0){
+                return 0;
             }
-            else if(f[middle] >= target){
-                r = middle + 1;
+            if(sum > goal){
+                index2 -= 1;
+            }
+            else{
+                index1 += 1;
             }
         }
-        return l;
-    }
+            return min;
+         }
 
     public static void main(String[] args){
         Solution5675 s = new Solution5675();

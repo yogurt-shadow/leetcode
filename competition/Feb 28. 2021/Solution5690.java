@@ -45,9 +45,15 @@ class Solution5690 {
         	dist = Math.abs(res1 - target);
         	result = res1;
 		}
+		else if(Math.abs(res1 - target) == dist){
+			result = Math.min(result, res1);
+		}
 		if(Math.abs(res2 - target) < dist){
 			dist = Math.abs(res2 - target);
 			result = res2;
+		}
+		else if(Math.abs(res2 - target) == dist){
+			result = Math.min(result, res2);
 		}
     	return result;
     }

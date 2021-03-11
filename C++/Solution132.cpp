@@ -5,8 +5,10 @@ using namespace std;
 
 class Solution132 {
 public:
+    vector<vector<int>> dp;
+    vector<int> mem;
+
     int minCut(string s) {
-        vector<vector<int>> dp;
         int size = s.length();
         dp.resize(size, vector<int>(size));
         for(int i = 0; i < size; i++){
@@ -25,19 +27,24 @@ public:
                 }
             }
         }
-        vector<int> f(size, INT_MAX);
-        for(int i = 0; i < size; i++){
-            if(dp[0][i]){
-                f[i] = 0;
-            }
-            else{
-                for(int j = 0; j < i; j++){
-                    if(dp[j + 1][i]){
-                        f[i] = min(f[i], f[j] + 1);
-                    }
-                }
+        mem.resize(size, -1);
+        return split(size - 1);
+    }
+
+    int split(int x){
+        if(dp[0][x]){
+            return 0;
+        }
+        if(mem[x] != -1){
+            return mem[x];
+        }
+        int cut = INT_MAX;
+        for(int j = 0; j < x; j++){
+            if(dp[j + 1][x]){
+                cut = min(cut, split(j) + 1);
             }
         }
-        return f[size - 1];
+        mem[x] = cut;
+        return cut;
     }
 };

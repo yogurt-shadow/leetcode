@@ -9,9 +9,20 @@
 using namespace std;
 using ll = long long;
 
-class Solution1{
+class Solution {
 public:
-
+    bool checkIfPangram(string sentence) {
+        vector<int> freq(26);
+        for(auto ele: sentence){
+            freq[ele - 'a']++;
+        }
+        for(auto ele: freq){
+            if(!ele){
+                return false;
+            }
+        }
+        return true;
+    }
 };
 
 int main(){

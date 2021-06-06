@@ -12,20 +12,6 @@ class Solution4 {
 public:
     const int MOD = 1e9 + 7;
 
-    int binarySearch(vector<int> &arr, int target)
-    {
-        int left = 0, right = arr.size() - 1;
-        while (left <= right)
-        {
-            int mid = left + (right - left) / 2;
-            if (arr[mid] <= target)
-                left = mid + 1;
-            else
-                right = mid - 1;
-        }
-        return right;
-    }
-
     int minWastedSpace(vector<int> &packages, vector<vector<int>> &boxes)
     {
         sort(packages.begin(), packages.end());
@@ -58,11 +44,25 @@ public:
                     cur += boxes[i][j] * (packages.size() - index) - (pre[packages.size()] - pre[index]);
                     break;
                 }
-                int x = binarySearch(packages, boxes[i][j]);
-                cur += (ll)boxes[i][j] * (x - index + 1) - (pre[x + 1] - pre[index]);
-                index = x + 1;
+                int l = index;
+                while (r - l > 1)
+                {
+                    //cout << l << " " << r << " " << index << endl;
+                    int mid = (r - l) / 2 + l;
+                    if (packages[mid] <= boxes[i][j])
+                    {
+                        l = mid;
+                    }
+                    else
+                    {
+                        r = mid;
+                    }
+                }
+                cur += (ll)boxes[i][j] * (l - index + 1) - (pre[l + 1] - pre[index]);
+                index = l + 1;
             }
             ans = min(ans, cur);
+            //cout << ans << endl;
         }
         if (cannot)
         {

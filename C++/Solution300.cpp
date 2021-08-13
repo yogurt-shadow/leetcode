@@ -8,23 +8,21 @@ using namespace std;
 
 class Solution300 {
 public:
-    int lengthOfLIS(vector<int>& nums) {
-        int size = nums.size();
-        vector<int> dp(size);
-        dp[0] = 1;
-        for(int i = 1; i < size; i++){
-            int mm = 0;
-            for(int j = 0; j < i; j++){
-                if(nums[j] < nums[i]){
-                    mm = max(mm, dp[j]);
-                }
+    int lengthOfLIS(vector<int> &nums)
+    {
+        vector<int> ans;
+        for (auto ele : nums)
+        {
+            if (ans.size() == 0 || ele > ans.back())
+            {
+                ans.push_back(ele);
             }
-            dp[i] = mm + 1;
+            else
+            {
+                int index = lower_bound(ans.begin(), ans.end(), ele) - ans.begin();
+                ans[index] = ele;
+            }
         }
-        int res = 0;
-        for(int i = 0; i < size; i++){
-            res = max(res, dp[i]);
-        }
-        return res;
+        return ans.size();
     }
 };

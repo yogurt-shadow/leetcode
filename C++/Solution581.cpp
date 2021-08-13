@@ -7,25 +7,24 @@ using namespace std;
 
 class Solution581 {
 public:
-    int findUnsortedSubarray(vector<int>& nums) {
-        int size = nums.size();
-        if(size == 1){
-            return 0;
+    int findUnsortedSubarray(vector<int> &nums) {
+        int left = -1, right = -1;
+        int m1 = nums[nums.size() - 1], m2 = nums[0];
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i] >= m2){
+                m2 = nums[i];
+            }
+            else{
+                right = i;
+            }
+            if (nums[nums.size() - 1 - i] <= m1){
+                m1 = nums[nums.size() - 1 - i];
+            }
+            else{
+                left = nums.size() - 1 - i;
+            }
         }
-        vector<int> copy(nums.begin(), nums.end());
-        sort(nums.begin(), nums.end());
-        int left = 0;
-        int right = size - 1;
-        while(left < size && nums[left] == copy[left]){
-            left++;
-        }
-        if(left == size){
-            return 0;
-        }
-        while(right >= 0 && nums[right] == copy[right]){
-            right--;
-        }
-        return right - left + 1;
+        return right == -1 ? 0 : right - left + 1;
     }
 };
 

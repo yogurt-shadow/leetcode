@@ -49,6 +49,8 @@
         "xutility": "cpp",
         "stack": "cpp",
         "queue": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "array": "cpp",
+        "string_view": "cpp"
     }
 }

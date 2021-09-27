@@ -45,6 +45,8 @@ public:
 };
 
 int main(){
+    string s;
+    cin >> s;
     cout << (-1 % 3) << endl;
     return 0;
 }
